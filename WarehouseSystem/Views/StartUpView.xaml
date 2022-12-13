@@ -1,0 +1,45 @@
+﻿<Window x:Class="WarehouseSystem.Views.StartUpView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseSystem.Views"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="StartUpView" Height="550" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="5">
+            <Label Margin="5" x:Name="LoggedUserName" HorizontalAlignment="Center" />
+            <Button x:Name="LoadClientPage" Margin="5" Visibility="{Binding IsAdmin}">Clients</Button>
+            <Button x:Name="LoadDeliveryPage" Margin="5" Visibility="{Binding IsAdmin}">Deliveries</Button>
+            <Button x:Name="LoadEmployeePage" Margin="5" Visibility="{Binding IsAdmin}">Employees</Button>
+            <Button x:Name="LoadEquipmentPage" Margin="5" Visibility="{Binding IsAdmin}">Equipment</Button>
+            <Button x:Name="LoadInventoryPage" Margin="5" Visibility="{Binding IsAdmin}">Inventories</Button>
+            <Button x:Name="LoadOrderPage" Margin="5" Visibility="{Binding IsAdmin}">Orders</Button>
+            <Button x:Name="LoadReturnPage" Margin="5" Visibility="{Binding IsAdmin}">Returns</Button>
+            <Button x:Name="LoadShipmentPage" Margin="5" Visibility="{Binding IsAdmin}">Shipments</Button>
+            <Button x:Name="LoadUserPage" Margin="5" Visibility="{Binding IsAdmin}">Users</Button>
+            <Button x:Name="LoadEventPage" Margin="5" Visibility="{Binding IsAdmin}">Events</Button>
+            <Button x:Name="LoadEventReadOnlyPage" Margin="5" Visibility="{Binding EventScreenVisibility}">Events (Read-Only)</Button>
+            <Button x:Name="LoadLogInPage" Margin="5" Content="{Binding LogInOut}"></Button>
+        </StackPanel>
+
+        <!-- Row 2 -->
+        <ContentControl Grid.Column="1"  Grid.RowSpan="2" x:Name="ActiveItem" Margin="5" />
+    </Grid>
+</Window>

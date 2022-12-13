@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WarehouseSystem.Views.EventReadOnly.EventReadOnlyGridView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseSystem.Views.EventReadOnly"
+        xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform"
+        mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="Events" FontSize="28" FontWeight="ExtraBold" />
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" Height="Auto" Grid.Row="1">
+            <DataGrid x:Name="EventsReadOnly" AutoGenerateColumns="False"  IsReadOnly="true" Height="auto" BorderBrush="#cec35c" BorderThickness="5">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Executed" Binding="{Binding Executed}" />
+                    <DataGridTextColumn Header="User Id " Binding="{Binding UserId}" />
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="v" x:Name="Execute" cal:Message.Attach="Execute($this)" IsEnabled="{Binding IsActive}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="View Details" x:Name="LoadDetailsPage" cal:Message.Attach="LoadDetailsPage($this)" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Claim" x:Name="ClaimEvent" cal:Message.Attach="ClaimEvent($this)" IsEnabled="{Binding IsActive}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Button Grid.Row="1" Margin="5" Content="Refresh" x:Name="Reload" HorizontalAlignment="Left" AutomationProperties.AccessKey="Enter" />
+        </StackPanel>
+    </Grid>
+</UserControl>
